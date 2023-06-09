@@ -28,6 +28,8 @@ namespace Bertis.Runtime
 			if (getActive == null)
 				throw new ArgumentNullException(nameof(getActive));
 
+			m_GetActive = getActive;
+
 			if (unique)
 			{
 				m_Creation = Creation.Unique;
@@ -35,7 +37,7 @@ namespace Bertis.Runtime
 			else
 			{
 				m_Creation = Creation.Stack;
-				m_GameObject = new(typeof(T).GetName());
+				m_GameObject = Hierarchy.CreateGameObject(typeof(T).GetName(), !Temporary);
 			}
 		}
 

@@ -1,11 +1,9 @@
 {
-    "name": "Editor",
-    "rootNamespace": "Bertis.Editor",
+    "name": "Audio",
+    "rootNamespace": "Bertis.Runtime.Audio",
     "references": [
         "GUID:9dc56d562b4a0a348bde9aefff05d581",
-        "GUID:842e743fe9e46cb44acadc4130d41195",
-        "GUID:d1a007c241060a64ab66d26d664e609a",
-        "GUID:af72035a9d1d6d9429bc633053caa0bd"
+        "GUID:842e743fe9e46cb44acadc4130d41195"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

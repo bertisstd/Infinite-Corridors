@@ -3,31 +3,20 @@ using FnId = Bertis.Runtime.FunctionUtility.Id;
 namespace Bertis.Test
 {
 	using Bertis.Runtime;
+	using Bertis.Runtime.Audio;
 	using UnityEngine;
 
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private float m_Delay;
-
-		private FnId m_FnId;
+		private AudioClip m_Clip;
 
 		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				fn();
-				m_FnId = FunctionUtility.InvokeDelayed(fn, m_Delay);
+				AudioHandler.Play(m_Clip);
 			}
-			else if (Input.GetKeyDown(KeyCode.Space))
-			{
-				m_FnId.Abort();
-			}
-		}
-
-		void fn()
-		{
-			Diag.Log(Time.time);
 		}
 
 	}
