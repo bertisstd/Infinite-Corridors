@@ -60,7 +60,7 @@ namespace Bertis.Runtime
 				Creation.Scheme => Hierarchy.CreateComponent(Scheme, !Temporary),
 				Creation.Unique => Hierarchy.CreateComponent<T>(typeof(T).GetName(), !Temporary),
 				Creation.Stack  => m_GameObject.AddComponent<T>(),
-				_ => throw new ArgumentOutOfRangeException()
+				_ => throw new EnumIndexException(m_Creation)
 			};
 
 			return new(m_GetActive, value);

@@ -7,10 +7,10 @@ namespace Bertis
 
 	static public class Diag
 	{
-		public const string UnityEditor = "UnityEditor";
+		public const string UnityEditor = "UNITY_EDITOR";
 
 		[Conditional(UnityEditor)]
-		static public void Log(string message)
+		static public void Log(object message)
 		{
 			Debug.Log(message);
 		}
@@ -22,7 +22,7 @@ namespace Bertis
 			{
 				foreach (var elem in coll)
 				{
-					Debug.Log(elem);
+					Log(elem);
 				}
 			}
 		}
