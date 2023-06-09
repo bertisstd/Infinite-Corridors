@@ -1,9 +1,8 @@
 {
-    "name": "__test",
-    "rootNamespace": "Bertis.Test",
+    "name": "Runtime",
+    "rootNamespace": "Bertis.Runtime",
     "references": [
-        "GUID:9dc56d562b4a0a348bde9aefff05d581",
-        "GUID:842e743fe9e46cb44acadc4130d41195"
+        "GUID:9dc56d562b4a0a348bde9aefff05d581"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
