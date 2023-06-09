@@ -15,6 +15,18 @@ namespace Bertis
 			return GenSingle(0f, max);
 		}
 
+		static public float GenSingleSign(bool includeZero = false)
+		{
+			if (includeZero)
+			{
+				return GenInt32(-1, 2);
+			}
+			else
+			{
+				return GenBool() ? -1f : +1f;
+			}
+		}
+
 		static public int GenInt32(int low, int high)
 		{
 			return Random.Range(low, high);
@@ -33,6 +45,14 @@ namespace Bertis
 		static public bool GenBool(float trueChance)
 		{
 			return GenSingle(ext.Math.Epsilon, 1.0f) <= trueChance;
+		}
+
+		static public Vector3 GenVector3Sign(bool includeZero = false)
+		{
+			return new Vector3(
+				GenSingleSign(includeZero),
+				GenSingleSign(includeZero),
+				GenSingleSign(includeZero));
 		}
 
 	}

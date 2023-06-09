@@ -3,8 +3,7 @@
     "rootNamespace": "Bertis.Test",
     "references": [
         "GUID:9dc56d562b4a0a348bde9aefff05d581",
-        "GUID:842e743fe9e46cb44acadc4130d41195",
-        "GUID:d1a007c241060a64ab66d26d664e609a"
+        "GUID:842e743fe9e46cb44acadc4130d41195"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

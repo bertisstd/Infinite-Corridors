@@ -1,5 +1,5 @@
 
-namespace Bertis.Runtime.Audio
+namespace Bertis.Runtime
 {
 	using UnityEngine;
 

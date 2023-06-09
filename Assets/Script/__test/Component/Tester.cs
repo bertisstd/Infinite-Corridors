@@ -3,19 +3,20 @@ using FnId = Bertis.Runtime.FunctionUtility.Id;
 namespace Bertis.Test
 {
 	using Bertis.Runtime;
-	using Bertis.Runtime.Audio;
 	using UnityEngine;
 
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private AudioClip m_Clip;
+		private TransformNoiseHandler m_Handler;
+		[SerializeField]
+		private TransformNoiseRef m_NoiseRef;
 
 		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				AudioHandler.Play(m_Clip);
+				m_Handler.Apply(m_NoiseRef);
 			}
 		}
 

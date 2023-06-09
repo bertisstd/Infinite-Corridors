@@ -24,6 +24,19 @@ namespace Bertis.Runtime
 		{
 			get => m_Collection.Count;
 		}
+		public int ActiveCount
+		{
+			get
+			{
+				var ret = 0;
+				for (var i = m_Collection.Count; --i >= 0;)
+				{
+					if (m_Collection[i].Active)
+						++ret;
+				}
+				return ret;
+			}
+		}
 
 		public virtual void Initialize()
 		{
