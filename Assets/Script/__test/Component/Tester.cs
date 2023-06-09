@@ -8,13 +8,13 @@ namespace Bertis.Test
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private SpriteAnimRef m_Anim;
+		private WorldSpriteRef m_Ref;
 
 		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				m_Anim.Animate(transform.position, transform.rotation);
+				m_Ref.Place(transform.position);
 			}
 		}
 
