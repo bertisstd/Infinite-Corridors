@@ -8,15 +8,13 @@ namespace Bertis.Test
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private TransformNoiseHandler m_Handler;
-		[SerializeField]
-		private TransformNoiseRef m_NoiseRef;
+		private SpriteAnimRef m_Anim;
 
 		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				m_Handler.Apply(m_NoiseRef);
+				m_Anim.Animate(transform.position, transform.rotation);
 			}
 		}
 
