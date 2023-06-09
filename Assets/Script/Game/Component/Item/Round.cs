@@ -20,10 +20,15 @@ namespace Bertis.Game
 
 		private void OnTriggerEnter2D(Collider2D collider)
 		{
-			if (!m_Rifle.Pierce)
+			if (collider.TryGetComponent<UnitInfo>(out var unit))
 			{
-				m_StopId.Abort();
-				gameObject.SetActive(false);
+				m_Rifle.Source.DealDamage(unit, transform.position);
+
+				if (unit.UnitType.Static || !m_Rifle.Pierce)
+				{
+					m_StopId.Abort();
+					gameObject.SetActive(false);
+				}
 			}
 		}
 

@@ -13,7 +13,7 @@ namespace Bertis.Test
 
 		private void Update()
 		{
-			m_Gun.PullTrigger(Input.GetMouseButton(0));
+			m_Gun.PullTrigger(Input.GetKey(KeyCode.Space));
 		}
 
 	}

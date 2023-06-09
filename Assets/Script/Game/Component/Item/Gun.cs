@@ -6,10 +6,27 @@ namespace Bertis.Game
 	public abstract class Gun : MonoBehaviour
 	{
 		[SerializeField]
+		private float m_Damage;
+		[SerializeField]
 		private Transform m_Muzzle;
 
+		private UnitInfo m_Source;
 		private bool m_TriggerPulled;
 
+		public UnitInfo Source
+		{
+			get => m_Source;
+			set
+			{
+				if (m_Source != null)
+					m_Source.Damage -= m_Damage;
+
+				m_Source = value;
+
+				if (m_Source != null)
+					m_Source.Damage += m_Damage;
+			}
+		}
 		public Transform Muzzle
 		{
 			get => m_Muzzle;
@@ -30,7 +47,6 @@ namespace Bertis.Game
 					OnTriggerRelease();
 					return;
 			}
-
 		}
 
 		protected abstract void OnTriggerPull();

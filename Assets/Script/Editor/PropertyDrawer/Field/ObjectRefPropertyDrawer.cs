@@ -58,7 +58,7 @@ namespace Bertis.Editor
 			idProp.isExpanded = EditorGUI.Foldout(
 				rect,
 				idProp.isExpanded,
-				idProp.displayName,
+				label,
 				true);
 
 			if (!idProp.isExpanded)
