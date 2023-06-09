@@ -5,12 +5,19 @@ namespace Bertis.Game
 
 	public sealed class PlayerInfo : UnitInfo
 	{
+		static private PlayerInfo s_Reference;
+
 		[SerializeField]
 		private Gun m_TestGun;
 		[SerializeField]
 		private Transform m_Hand;
 
 		private Gun m_Gun;
+
+		static public PlayerInfo Reference
+		{
+			get => s_Reference;
+		}
 
 		public Gun Gun
 		{
@@ -37,6 +44,8 @@ namespace Bertis.Game
 
 		private void Awake()
 		{
+			s_Reference = this;
+
 			if (m_TestGun != null)
 			{
 				Gun = m_TestGun;

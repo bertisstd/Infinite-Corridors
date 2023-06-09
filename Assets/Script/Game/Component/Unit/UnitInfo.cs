@@ -1,11 +1,14 @@
 
 namespace Bertis.Game
 {
+	using System;
 	using UnityEngine;
 	using Bertis.Runtime;
 
 	public class UnitInfo : MonoBehaviour
 	{
+		public event Action OnHealthChanged;
+
 		[Header("Info")]
 		[SerializeField]
 		private UnitTypeRef m_UnitType;
@@ -46,7 +49,11 @@ namespace Bertis.Game
 		public Resource Health
 		{
 			get => m_Health;
-			set => m_Health = value;
+			set
+			{
+				m_Health = value;
+				OnHealthChanged?.Invoke();
+			}
 		}
 		public float Resistance
 		{

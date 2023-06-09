@@ -1,14 +1,13 @@
 
 namespace Bertis.Test
 {
+	using Bertis.Game;
 	using UnityEngine;
 
 	public class Controller : MonoBehaviour
 	{
 		[SerializeField]
 		private float m_MoveSpeed;
-		[SerializeField]
-		private float m_RotateDir;
 
 		private void Update()
 		{
@@ -22,12 +21,8 @@ namespace Bertis.Test
 
 			transform.position += moveDir * Time.deltaTime;
 
-			var rotDeg = 0f;
-
-			if (Input.GetKey(KeyCode.LeftArrow)) { rotDeg = -m_RotateDir; } else
-			if (Input.GetKey(KeyCode.RightArrow)) { rotDeg = +m_RotateDir; }
-
-			transform.eulerAngles += rotDeg * Time.deltaTime * Vector3.forward;
+			var delta = View.GetPointerWorldPosition() - transform.position;
+			transform.rotation = Quaternion.Euler(0f, 0f, ext.Math.ToDegree(delta));
 		}
 
 	}
