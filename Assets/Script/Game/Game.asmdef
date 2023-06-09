@@ -1,10 +1,9 @@
 {
-    "name": "__test",
-    "rootNamespace": "Bertis.Test",
+    "name": "Game",
+    "rootNamespace": "Bertis.Game",
     "references": [
         "GUID:9dc56d562b4a0a348bde9aefff05d581",
-        "GUID:842e743fe9e46cb44acadc4130d41195",
-        "GUID:11e79f75ba8f2a7428fe34bd2f751143"
+        "GUID:842e743fe9e46cb44acadc4130d41195"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

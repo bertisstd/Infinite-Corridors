@@ -2,20 +2,18 @@ using FnId = Bertis.Runtime.FunctionUtility.Id;
 
 namespace Bertis.Test
 {
-	using Bertis.Runtime;
 	using UnityEngine;
+	using Bertis.Runtime;
+	using Bertis.Game;
 
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private WorldSpriteRef m_Ref;
+		private Gun m_Gun;
 
 		private void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Return))
-			{
-				m_Ref.Place(transform.position);
-			}
+			m_Gun.PullTrigger(Input.GetMouseButton(0));
 		}
 
 	}

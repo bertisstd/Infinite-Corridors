@@ -13,6 +13,11 @@ namespace Bertis.Runtime
 		private readonly List<ComponentCache<T>> m_Collection;
 		private ComponentCache<T> m_Cache;
 
+		protected ComponentProvider()
+		{
+			m_Collection = new();
+		}
+
 		public ComponentCache<T> this[int index]
 		{
 			get => m_Collection[index];
