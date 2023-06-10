@@ -136,5 +136,19 @@ namespace Bertis.Game
 			gameObject.SetActive(false);
 		}
 
+		public void Step()
+		{
+			var cast = Physics2D.Raycast(
+				transform.position,
+				Vector2.down,
+				ext.Math.Epsilon,
+				Layer.GroundFlag);
+
+			if (cast && cast.collider.TryGetComponent<Ground>(out var ground))
+			{
+				ground.Step();
+			}
+		}
+
 	}
 }
