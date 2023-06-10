@@ -15,7 +15,7 @@ namespace Bertis.Test
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				PlayerInfo.Reference.Heal(m_Value);
+				HealthDrop.Drop(transform.position, m_Value);
 			}
 		}
 
