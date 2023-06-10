@@ -112,7 +112,7 @@ namespace Bertis.Game
 			PfxHandler.Play(pfx, reactionPosition);
 		}
 
-		public void Die()
+		public virtual void Die()
 		{
 			gameObject.SetActive(false);
 		}

@@ -8,6 +8,8 @@ namespace Bertis.Test
 
 	public class Tester : MonoBehaviour
 	{
+		[SerializeField]
+		private WeightedSet<Transform> m_Set;
 
 	}
 }
