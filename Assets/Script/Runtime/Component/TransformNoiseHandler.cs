@@ -31,7 +31,7 @@ namespace Bertis.Runtime
 			}
 		}
 
-		public void Apply(TransformNoiseRef transformNoiseRef)
+		public void Play(TransformNoiseRef transformNoiseRef)
 		{
 			if (transformNoiseRef == null)
 				throw new ArgumentNullException(nameof(transformNoiseRef));

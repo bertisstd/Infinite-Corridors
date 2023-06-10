@@ -23,6 +23,8 @@ namespace Bertis.Game
 		private AudioClip m_FireSfx;
 		[SerializeField]
 		private SpriteAnimRef m_FireSpriteAnim;
+		[SerializeField]
+		private TransformNoiseRef m_FireNoise;
 
 		private float m_LastFireTime;
 
@@ -72,6 +74,9 @@ namespace Bertis.Game
 		{
 			AudioHandler.Play(m_FireSfx);
 			m_FireSpriteAnim.Animate(Muzzle.position, Muzzle.rotation);
+
+			if (Source is PlayerInfo)
+				View.PlayNoise(m_FireNoise);
 		}
 
 		protected override void OnTriggerPull()

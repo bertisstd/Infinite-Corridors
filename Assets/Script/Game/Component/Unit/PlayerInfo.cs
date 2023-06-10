@@ -11,6 +11,8 @@ namespace Bertis.Game
 		private Gun m_TestGun;
 		[SerializeField]
 		private Transform m_Hand;
+		[SerializeField]
+		private Transform m_Front;
 
 		private Gun m_Gun;
 
@@ -40,6 +42,14 @@ namespace Bertis.Game
 
 				m_Gun = value;
 			}
+		}
+		public Transform Hand
+		{
+			get => m_Hand;
+		}
+		public Transform Front
+		{
+			get => m_Front;
 		}
 
 		private void Awake()
