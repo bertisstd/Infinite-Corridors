@@ -31,6 +31,11 @@ namespace Bertis.Game
 			m_Update();
 		}
 
+		private void OnEnable()
+		{
+			StartIdle();
+		}
+
 		private void StartIdle()
 		{
 			m_Rigidbody2D.velocity = Vector2.zero;
@@ -99,17 +104,6 @@ namespace Bertis.Game
 			{
 				gun.PullTrigger(Input.GetMouseButton(0));
 			}
-		}
-
-		private void OnEnable()
-		{
-			StartIdle();
-		}
-
-		private enum State
-		{
-			Idle,
-			Walk
 		}
 
 	}

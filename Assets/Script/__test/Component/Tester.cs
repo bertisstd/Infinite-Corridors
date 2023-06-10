@@ -15,7 +15,7 @@ namespace Bertis.Test
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				HealthDrop.Drop(transform.position, m_Value);
+				Debug.Log("here");
 			}
 		}
 
