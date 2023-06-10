@@ -7,6 +7,10 @@ namespace Bertis.Game
 
 	public class UnitInfo : MonoBehaviour
 	{
+		static public event ReactionDelegate OnReactionStatic;
+		static public event Action<UnitInfo, float> OnHealStatic;
+
+		public event ReactionDelegate OnReaction;
 		public event Action OnHealthChanged;
 
 		[Header("Info")]
@@ -81,6 +85,9 @@ namespace Bertis.Game
 			else
 			{
 				var reaction = new ReactionInfo(this, target);
+				OnReactionStatic?.Invoke(ref reaction);
+				OnReaction?.Invoke(ref reaction);
+				target.OnReaction?.Invoke(ref reaction);
 				damage = reaction.damage;
 			}
 
@@ -110,6 +117,18 @@ namespace Bertis.Game
 
 			AudioHandler.Play(sfx);
 			PfxHandler.Play(pfx, reactionPosition);
+		}
+
+		public void Heal(float amount)
+		{
+			if (amount > 0f)
+			{
+				var health = Health;
+				health.Current += amount;
+				Health = health;
+
+				OnHealStatic?.Invoke(this, amount);
+			}
 		}
 
 		public virtual void Die()

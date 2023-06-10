@@ -9,7 +9,15 @@ namespace Bertis.Test
 	public class Tester : MonoBehaviour
 	{
 		[SerializeField]
-		private WeightedSet<Transform> m_Set;
+		private float m_Value;
+
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.Return))
+			{
+				PlayerInfo.Reference.Heal(m_Value);
+			}
+		}
 
 	}
 }
