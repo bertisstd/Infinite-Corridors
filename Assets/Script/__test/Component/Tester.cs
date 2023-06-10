@@ -8,13 +8,6 @@ namespace Bertis.Test
 
 	public class Tester : MonoBehaviour
 	{
-		[SerializeField]
-		private Gun m_Gun;
-
-		private void Update()
-		{
-			m_Gun.PullTrigger(Input.GetKey(KeyCode.Space));
-		}
 
 	}
 }

@@ -27,6 +27,10 @@ namespace Bertis.Game
 		[SerializeField]
 		private float m_Resistance;
 
+		[Header("Ability")]
+		[SerializeField]
+		private float m_MoveSpeed;
+
 		public UnitTypeInfo UnitType
 		{
 			get => m_UnitType.Info;
@@ -59,6 +63,11 @@ namespace Bertis.Game
 		{
 			get => m_Resistance;
 			set => m_Resistance = value;
+		}
+		public float MoveSpeed
+		{
+			get => m_MoveSpeed;
+			set => m_MoveSpeed = value;
 		}
 
 		public void DealDamage(UnitInfo target, Vector3 reactionPosition)
