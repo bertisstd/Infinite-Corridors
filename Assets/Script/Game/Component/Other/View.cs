@@ -29,6 +29,11 @@ namespace Bertis.Game
 		static private void Initialize()
 		{
 			s_FollowSpeed = ConfigProvider.GetSingle(+1512779511); /*ViewFollowSpeed*/
+
+			StageHandler.OnStageChanged += () =>
+			{
+				s_This.transform.localPosition = PlayerInfo.Reference.Front.position;
+			};
 		}
 
 		static public Vector3 GetPointerWorldPosition()

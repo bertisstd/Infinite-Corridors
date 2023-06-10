@@ -11,7 +11,7 @@ namespace Bertis
 		[SerializeField, ReadOnly]
 		private float m_TotalWeight;
 
-		public T GetValue()
+		public T GenValue()
 		{
 			switch (m_Collection.Length)
 			{

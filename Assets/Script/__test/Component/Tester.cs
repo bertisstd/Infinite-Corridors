@@ -15,7 +15,7 @@ namespace Bertis.Test
 		{
 			if (Input.GetKeyDown(KeyCode.Return))
 			{
-				Debug.Log("here");
+				StageHandler.GotoNextStage();
 			}
 		}
 
