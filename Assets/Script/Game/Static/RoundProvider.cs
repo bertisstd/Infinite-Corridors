@@ -12,6 +12,19 @@ namespace Bertis.Game
 		static private void Initialize()
 		{
 			s_Provider = new();
+
+			StageHandler.OnStageChanged += DisposeAll;
+		}
+
+		static private void DisposeAll()
+		{
+			foreach (var cache in s_Provider)
+			{
+				foreach (var elem in cache)
+				{
+					elem.gameObject.SetActive(false);
+				}
+			}
 		}
 
 		static public Round Provide(Round scheme)

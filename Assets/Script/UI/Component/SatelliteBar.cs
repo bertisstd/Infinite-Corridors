@@ -31,7 +31,7 @@ namespace Bertis.UI
 			canvas.worldCamera = View.Camera;
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			transform.position = m_SatelliteInfo.BarPosition;
 		}
@@ -43,6 +43,8 @@ namespace Bertis.UI
 				m_SatelliteInfo.OnVisibilityChanged -= OnVisibilityChanged;
 				m_SatelliteInfo = null;
 			}
+
+			base.OnDisable();
 		}
 
 		private void OnVisibilityChanged()

@@ -9,7 +9,7 @@ namespace Bertis.Game
 	public class Round : MonoBehaviour
 	{
 		private Rifle m_Rifle;
-		private FnId m_StopId;
+		private FnId  m_StopId;
 
 		private Rigidbody2D m_Rigidbody;
 

@@ -21,11 +21,10 @@ namespace Bertis.Game
 				if (m_Source != null)
 					m_Source.Damage -= m_Damage;
 
-				if (value != null)
-				{
-					value.Damage += m_Damage;
-					m_Source = value;
-				}
+				m_Source = value;
+
+				if (m_Source != null)
+					m_Source.Damage += m_Damage;
 			}
 		}
 		public Transform Muzzle
