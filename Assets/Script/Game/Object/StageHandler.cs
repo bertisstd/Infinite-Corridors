@@ -46,18 +46,14 @@ namespace Bertis.Game
 			DisposeEnemies();
 
 			if (s_CurrentStage != null)
-			{
-				var gameObject = s_CurrentStage.gameObject;
-				gameObject.SetActive(false);
-				Destroy(gameObject);
-			}
+				s_CurrentStage.Dispose();
 
 			TeleportPlayer(nextStage);
-			SpawnEnemies(nextStage);
 			SwapGuns();
+			var count = SpawnEnemies(nextStage);
 
 			OnStageChanged?.Invoke();
-
+			nextStage.Activate(count);
 			s_CurrentStage = nextStage;
 		}
 
@@ -79,12 +75,13 @@ namespace Bertis.Game
 			}
 		}
 
-		static private void SpawnEnemies(Stage nextStage)
+		static private int SpawnEnemies(Stage nextStage)
 		{
 			var points = nextStage.SpawnPoints
 				.OrderBy(_ => RNG.GenInt32(nextStage.MaxSpawnCount))
 				.Take(nextStage.MaxSpawnCount);
 
+			var count = 0;
 			foreach (var point in points)
 			{
 				var scheme = This.m_Spawns.GenValue();
@@ -92,7 +89,11 @@ namespace Bertis.Game
 				instance.ResetProperties();
 				instance.transform.position = point.position;
 				instance.gameObject.SetActive(true);
+
+				count++;
 			}
+
+			return count;
 		}
 
 		static private void SwapGuns()

@@ -5,11 +5,14 @@ namespace Bertis.Test
 	using UnityEngine;
 	using Bertis.Runtime;
 	using Bertis.Game;
+	using System;
 
 	public class Tester : MonoBehaviour
 	{
-		[SerializeField]
-		private float m_Value;
+		private void Awake()
+		{
+			Stage.OnProgress += OnStageCleared;
+		}
 
 		private void Update()
 		{
@@ -17,6 +20,11 @@ namespace Bertis.Test
 			{
 				StageHandler.GotoNextStage();
 			}
+		}
+
+		private void OnStageCleared(int left)
+		{
+			Diag.Log($"Progress: {left}");
 		}
 
 	}

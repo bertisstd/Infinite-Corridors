@@ -11,6 +11,7 @@ namespace Bertis.Game
 		static public event Action<UnitInfo, float> OnHealStatic;
 
 		public event ReactionDelegate OnReaction;
+		public event Action<UnitInfo> OnKill;
 		public event Action OnHealthChanged;
 
 		[Header("Info")]
@@ -111,6 +112,7 @@ namespace Bertis.Game
 				sfx = type.DeathSfx;
 				pfx = type.DeathPfx;
 				type.DeathSprite.Place(reactionPosition);
+				OnKill?.Invoke(target);
 				target.Die();
 			}
 			else

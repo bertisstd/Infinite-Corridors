@@ -6,32 +6,25 @@ namespace Bertis.Game
 	[RequireComponent(typeof(Collider2D))]
 	public class Door : MonoBehaviour
 	{
-		private void Start()
+		private Collider2D m_Collider;
+
+		public bool Active
 		{
-			enabled = false;
+			get => m_Collider.enabled;
+			set => m_Collider.enabled = value;
 		}
 
-		private void Update()
+		private void Awake()
 		{
-			if (Input.GetKeyDown(KeyCode.E))
-			{
-				StageHandler.GotoNextStage();
-			}
+			m_Collider = GetComponent<Collider2D>();
+			Active = false;
 		}
 
 		private void OnTriggerStay2D(Collider2D collider)
 		{
 			if (collider.TryGetComponent<PlayerInfo>(out _))
 			{
-				enabled = true;
-			}
-		}
-
-		private void OnTriggerExit2D(Collider2D collider)
-		{
-			if (collider.TryGetComponent<PlayerInfo>(out _))
-			{
-				enabled = false;
+				StageHandler.GotoNextStage();
 			}
 		}
 
