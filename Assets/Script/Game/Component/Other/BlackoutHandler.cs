@@ -10,7 +10,7 @@ namespace Bertis.Game
 		static private void Initialize()
 		{
 			var scheme = ConfigProvider.GetScheme<BlackoutHandler>(-1621176718); /*BlackoutHandler*/
-			var instance = Hierarchy.CreateComponent(scheme);
+			var instance = Hierarchy.CreateComponent(scheme, permanent: true);
 			instance.gameObject.SetActive(false);
 			StageHandler.OnStageChanged += () =>
 			{

@@ -16,6 +16,7 @@ namespace Bertis.Game
 
 		static private readonly SJitter<StageHandler> s_This = new(c_MenuName);
 		static private GComponentProvider<SatelliteInfo> s_EnemyProvider;
+		static private GComponentProvider<Gun> s_GunProvider;
 
 		static private Stage s_CurrentStage;
 
@@ -23,6 +24,8 @@ namespace Bertis.Game
 		private Set<Stage> m_Stages;
 		[SerializeField]
 		private WeightedSet<SatelliteInfo> m_Spawns;
+		[SerializeField]
+		private WeightedSet<Gun> m_Guns;
 
 		static private StageHandler This
 		{
@@ -33,6 +36,7 @@ namespace Bertis.Game
 		static private void Initialize()
 		{
 			s_EnemyProvider = new();
+			s_GunProvider   = new();
 		}
 
 		static public void GotoNextStage()
@@ -50,6 +54,7 @@ namespace Bertis.Game
 
 			TeleportPlayer(nextStage);
 			SpawnEnemies(nextStage);
+			SwapGuns();
 
 			OnStageChanged?.Invoke();
 
@@ -88,6 +93,19 @@ namespace Bertis.Game
 				instance.transform.position = point.position;
 				instance.gameObject.SetActive(true);
 			}
+		}
+
+		static private void SwapGuns()
+		{
+			var player = PlayerInfo.Reference;
+			var prevGun = player.Gun;
+
+			if (prevGun != null)
+				prevGun.gameObject.SetActive(false);
+
+			var nextGun = s_GunProvider.Provide(This.m_Guns.GenValue());
+			nextGun.gameObject.SetActive(true);
+			player.Gun = nextGun;
 		}
 
 	}
