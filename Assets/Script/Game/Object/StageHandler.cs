@@ -21,6 +21,8 @@ namespace Bertis.Game
 		static private Stage s_CurrentStage;
 
 		[SerializeField]
+		private int m_CurrentLevel;
+		[SerializeField]
 		private Set<Stage> m_Stages;
 		[SerializeField]
 		private WeightedSet<SatelliteInfo> m_Spawns;
@@ -32,6 +34,12 @@ namespace Bertis.Game
 			get => s_This.Get();
 		}
 
+		static public int CurrentLevel
+		{
+			get => This.m_CurrentLevel;
+			private set => This.m_CurrentLevel = value;
+		}
+
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		static private void Initialize()
 		{
@@ -41,6 +49,8 @@ namespace Bertis.Game
 
 		static public void GotoNextStage()
 		{
+			CurrentLevel++;
+
 			var nextStage = Instantiate(This.m_Stages.Gen());
 
 			DisposeEnemies();
