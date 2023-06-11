@@ -84,11 +84,7 @@ namespace Bertis.Game
 			{
 				var scheme = This.m_Spawns.GenValue();
 				var instance = s_EnemyProvider.Provide(scheme);
-
-				var health = instance.Health;
-				health.Current = health.Max;
-				instance.Health = health;
-
+				instance.ResetProperties();
 				instance.transform.position = point.position;
 				instance.gameObject.SetActive(true);
 			}

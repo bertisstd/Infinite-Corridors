@@ -9,6 +9,7 @@ namespace Bertis.Game
 		static public event Action<SatelliteInfo> OnVisibilityChangedStatic;
 
 		public event Action OnVisibilityChanged;
+		public event Action OnReset;
 
 		[SerializeField]
 		private Transform m_Bar;
@@ -45,6 +46,15 @@ namespace Bertis.Game
 			m_Visible = value;
 			OnVisibilityChangedStatic?.Invoke(this);
 			OnVisibilityChanged?.Invoke();
+		}
+
+		public void ResetProperties()
+		{
+			var health = Health;
+			health.Current = health.Max;
+			Health = health;
+
+			OnReset?.Invoke();
 		}
 
 	}

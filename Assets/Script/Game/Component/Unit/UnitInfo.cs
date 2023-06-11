@@ -73,6 +73,10 @@ namespace Bertis.Game
 			get => m_MoveSpeed;
 			set => m_MoveSpeed = value;
 		}
+		public bool Dead
+		{
+			get => m_Health.Depleted;
+		}
 
 		public void DealDamage(UnitInfo target, Vector3 reactionPosition)
 		{

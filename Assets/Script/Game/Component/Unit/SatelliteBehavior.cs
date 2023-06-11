@@ -18,12 +18,14 @@ namespace Bertis.Game
 		[SerializeField]
 		private Sensor m_AttackSensor;
 
-		private bool m_Attacking;
-		private float m_AttackTimer;
-
 		private SatelliteInfo m_SatelliteInfo;
-		private NavMeshAgent m_NavMeshAgent;
-		private Animator m_Animator;
+		private NavMeshAgent  m_NavMeshAgent;
+		private Animator      m_Animator;
+
+		private State m_State;
+		private bool  m_Attack;
+		private bool  m_Attacking;
+		private float m_AttackTimer;
 
 		static SatelliteBehavior()
 		{
@@ -35,108 +37,116 @@ namespace Bertis.Game
 		private void Awake()
 		{
 			m_SatelliteInfo = GetComponent<SatelliteInfo>();
-			m_SatelliteInfo.OnReaction += OnReaction;
-			m_SatelliteInfo.OnVisibilityChanged += OnVisibilityChanged;
+			m_NavMeshAgent  = GetComponent<NavMeshAgent>();
+			m_Animator      = GetComponent<Animator>();
 
-			m_Animator = GetComponent<Animator>();
-
-			m_NavMeshAgent = GetComponent<NavMeshAgent>();
 			m_NavMeshAgent.updateRotation = false;
-			m_NavMeshAgent.updateUpAxis = false;
+			m_NavMeshAgent.updateUpAxis   = false;
 
-			m_DetectSensor.OnDetect += OnDetectTrigger;
-			m_AttackSensor.OnDetect += OnAttackTrigger;
+			m_SatelliteInfo.OnReaction += OnReaction;
+			m_SatelliteInfo.OnReset    += Idle;
+			m_DetectSensor.OnDetect    += OnDetectTrigger;
+			m_AttackSensor.OnDetect    += OnAttackTrigger;
 
 			Idle();
 		}
 
 		private void Update()
 		{
-			if (m_Attacking)
+			if (m_Attack && !m_Attacking)
 			{
-				if ((m_AttackTimer -= Time.deltaTime) <= 0f)
+				var time = Time.time;
+				if ((time - m_AttackTimer) >= m_AttackInterval)
 				{
 					Attack();
-					m_AttackTimer = m_AttackInterval;
+					m_AttackTimer = time;
 				}
 			}
 		}
 
 		private void FixedUpdate()
 		{
-			var targetPos = PlayerInfo.Reference.transform.position;
-			m_NavMeshAgent.SetDestination(targetPos);
+			var playerRef = PlayerInfo.Reference;
+			var playerPos = playerRef.transform.position;
 
-			var deltaAngle = ext.Math.ToDegree(targetPos - transform.position);
-			transform.rotation = Quaternion.Euler(0f, 0f, deltaAngle);
-		}
-		
-		private void OnReaction(ref ReactionInfo reaction)
-		{
-			if (reaction.source is PlayerInfo)
-			{
-				Chase();
-			}
-		}
+			m_NavMeshAgent.SetDestination(playerPos);
+			transform.rotation = Quaternion.Euler(0f, 0f, ext.Math.ToDegree(playerPos - transform.position));
 
-		private void OnDetectTrigger(UnitInfo target, bool forward)
-		{
-			if (target is PlayerInfo)
-			{
-				if (forward)
-				{
-					Chase();
-				}
-				else
-				{
-					Idle();
-				}
-			}
-		}
-
-		private void OnAttackTrigger(UnitInfo target, bool forward)
-		{
-			m_Attacking = forward;
-		}
-
-		private void OnVisibilityChanged()
-		{
-			if (!m_SatelliteInfo.Visible)
-			{
-				enabled = false;
-			}
+			if (playerRef.Dead)
+				Idle();
 		}
 
 		private void Idle()
 		{
 			if (gameObject.activeSelf)
-			{
 				m_Animator.Play(s_IdleHash);
-				enabled = false;
-			}
+
+			m_Attacking = false;
+			enabled = false;
+			m_State = State.Idle;
 		}
 
 		private void Chase()
 		{
+			m_Attacking = false;
 			m_Animator.Play(s_ChaseHash);
 			enabled = true;
+			m_State = State.Chase;
+		}
+
+		private void OnReaction(ref ReactionInfo reaction)
+		{
+			if (m_State == State.Idle && reaction.source is PlayerInfo)
+				Chase();
+		}
+
+		private void OnDetectTrigger(UnitInfo unit, bool forward)
+		{
+			if (forward)
+				Chase();
+		}
+
+		private void OnAttackTrigger(UnitInfo unit, bool forward)
+		{
+			m_Attack = forward;
 		}
 
 		private void Attack()
 		{
 			m_Animator.Play(s_AttackHash);
+			m_State = State.Attack;
 		}
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051", Justification = "<Pending>")]
-		private void Slash()
+#pragma warning disable IDE0051
+
+		private void StartSlash()
 		{
-			var player = PlayerInfo.Reference;
-			var playerPos = player.transform.position;
-			var distance = Vector2.Distance(transform.position, playerPos);
+			m_Attacking = true;
+
+			var playerRef = PlayerInfo.Reference;
+			var playerPos = playerRef.transform.position;
+
+			var distance = Vector2.Distance(
+				transform.position,
+				playerPos);
+
 			if (distance <= m_AttackSensor.Radius)
-			{
-				m_SatelliteInfo.DealDamage(player, playerPos);
-			}
+				m_SatelliteInfo.DealDamage(playerRef, playerPos);
+		}
+
+		private void EndSlash()
+		{
+			m_Attacking = false;
+			Chase();
+		}
+
+#pragma warning restore IDE0051
+
+		private enum State
+		{
+			Idle,
+			Chase,
+			Attack
 		}
 
 	}
