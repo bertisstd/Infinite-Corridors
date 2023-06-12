@@ -2,8 +2,8 @@ using Label = TMPro.TextMeshProUGUI;
 
 namespace Bertis.UI
 {
-	using Bertis.Game;
 	using UnityEngine;
+	using Bertis.Game;
 
 	public sealed class MainMenu : MonoBehaviour
 	{
