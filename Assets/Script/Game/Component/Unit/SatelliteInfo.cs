@@ -48,11 +48,9 @@ namespace Bertis.Game
 			OnVisibilityChanged?.Invoke();
 		}
 
-		public void ResetProperties()
+		public override void ResetProperties()
 		{
-			var health = Health;
-			health.Current = health.Max;
-			Health = health;
+			base.ResetProperties();
 
 			OnReset?.Invoke();
 		}

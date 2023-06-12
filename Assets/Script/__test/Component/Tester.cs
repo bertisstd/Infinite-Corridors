@@ -6,26 +6,11 @@ namespace Bertis.Test
 	using Bertis.Runtime;
 	using Bertis.Game;
 	using System;
+	using UnityEngine.UI;
 
 	public class Tester : MonoBehaviour
 	{
-		private void Awake()
-		{
-			Stage.OnProgress += OnStageCleared;
-		}
-
-		private void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.Return))
-			{
-				StageHandler.GotoNextStage();
-			}
-		}
-
-		private void OnStageCleared(int left)
-		{
-			Diag.Log($"Progress: {left}");
-		}
+		
 
 	}
 }

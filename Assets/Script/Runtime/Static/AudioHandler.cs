@@ -20,7 +20,7 @@ namespace Bertis.Runtime
 
 			var audioSource = s_Cache.Provide().audioSource;
 			audioSource.clip = clip;
-			audioSource.volume = volumeScale;
+			audioSource.volume = Settings.AudioVolume * volumeScale;
 			audioSource.Play();
 		}
 

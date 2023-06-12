@@ -23,6 +23,8 @@ namespace Bertis.Game
 		[SerializeField]
 		private int m_CurrentLevel;
 		[SerializeField]
+		private int m_HighestLevel;
+		[SerializeField]
 		private Set<Stage> m_Stages;
 		[SerializeField]
 		private WeightedSet<SatelliteInfo> m_Spawns;
@@ -39,25 +41,60 @@ namespace Bertis.Game
 			get => This.m_CurrentLevel;
 			private set => This.m_CurrentLevel = value;
 		}
+		static public int HighestLevel
+		{
+			get => This.m_HighestLevel;
+			private set => This.m_HighestLevel = value;
+		}
 
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
 		static private void Initialize()
 		{
 			s_EnemyProvider = new();
 			s_GunProvider   = new();
+
+			PlayerInfo.Reference.OnDie += () =>
+			{
+				CurrentLevel = 0;
+				PlayerInfo.Reference.ResetProperties();
+			};
+		}
+
+		static public void UnloadStage()
+		{
+			if (s_CurrentStage != null)
+			{
+				s_CurrentStage.Dispose();
+				DisposeEnemies();
+				s_CurrentStage = null;
+			}
+		}
+		
+		static public void StartNewStage()
+		{
+			PlayerInfo.Reference.gameObject.SetActive(true);
+			CurrentLevel = 1;
+			LoadStage();
+		}
+
+		static public void ContinueStage()
+		{
+			LoadStage();
 		}
 
 		static public void GotoNextStage()
 		{
-			CurrentLevel++;
+			if (++CurrentLevel > HighestLevel)
+				HighestLevel = CurrentLevel;
 
+			LoadStage();
+		}
+
+		static public void LoadStage()
+		{
 			var nextStage = Instantiate(This.m_Stages.Gen());
 
-			DisposeEnemies();
-
-			if (s_CurrentStage != null)
-				s_CurrentStage.Dispose();
-
+			UnloadStage();
 			TeleportPlayer(nextStage);
 			SwapGuns();
 			var count = SpawnEnemies(nextStage);
@@ -65,13 +102,6 @@ namespace Bertis.Game
 			OnStageChanged?.Invoke();
 			nextStage.Activate(count);
 			s_CurrentStage = nextStage;
-		}
-
-		static private void TeleportPlayer(Stage nextStage)
-		{
-			var doors = nextStage.Doors;
-			var nextDoor = doors[RNG.GenInt32(doors.Length)];
-			PlayerInfo.Reference.transform.position = nextDoor.transform.position;
 		}
 
 		static private void DisposeEnemies()
@@ -83,6 +113,26 @@ namespace Bertis.Game
 					elem.gameObject.SetActive(false);
 				}
 			}
+		}
+
+		static private void TeleportPlayer(Stage nextStage)
+		{
+			var doors = nextStage.Doors;
+			var nextDoor = doors[RNG.GenInt32(doors.Length)];
+			PlayerInfo.Reference.transform.position = nextDoor.transform.position;
+		}
+
+		static private void SwapGuns()
+		{
+			var player = PlayerInfo.Reference;
+			var prevGun = player.Gun;
+
+			if (prevGun != null)
+				prevGun.gameObject.SetActive(false);
+
+			var nextGun = s_GunProvider.Provide(This.m_Guns.GenValue());
+			nextGun.gameObject.SetActive(true);
+			player.Gun = nextGun;
 		}
 
 		static private int SpawnEnemies(Stage nextStage)
@@ -104,19 +154,6 @@ namespace Bertis.Game
 			}
 
 			return count;
-		}
-
-		static private void SwapGuns()
-		{
-			var player = PlayerInfo.Reference;
-			var prevGun = player.Gun;
-
-			if (prevGun != null)
-				prevGun.gameObject.SetActive(false);
-
-			var nextGun = s_GunProvider.Provide(This.m_Guns.GenValue());
-			nextGun.gameObject.SetActive(true);
-			player.Gun = nextGun;
 		}
 
 	}

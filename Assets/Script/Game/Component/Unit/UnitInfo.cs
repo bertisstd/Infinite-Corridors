@@ -13,6 +13,7 @@ namespace Bertis.Game
 		public event ReactionDelegate OnReaction;
 		public event Action<UnitInfo> OnKill;
 		public event Action OnHealthChanged;
+		public event Action OnDie;
 
 		[Header("Info")]
 		[SerializeField]
@@ -79,6 +80,13 @@ namespace Bertis.Game
 			get => m_Health.Depleted;
 		}
 
+		public virtual void ResetProperties()
+		{
+			var health = m_Health;
+			health.Current = health.Max;
+			Health = health;
+		}
+
 		public void DealDamage(UnitInfo target, Vector3 reactionPosition)
 		{
 			float damage;
@@ -139,6 +147,7 @@ namespace Bertis.Game
 
 		public virtual void Die()
 		{
+			OnDie?.Invoke();
 			gameObject.SetActive(false);
 		}
 

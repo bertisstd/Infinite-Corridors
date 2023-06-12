@@ -11,6 +11,9 @@ namespace Bertis.UI
 
 		static private readonly SJitter<ConfigProvider> s_This = new(c_MenuName);
 
+		[SerializeField]
+		private Library<AudioClip> m_SfxLibrary;
+
 		static private ConfigProvider This
 		{
 			get => s_This.Get();
@@ -39,6 +42,10 @@ namespace Bertis.UI
 		static public Range GetRange(int id)
 		{
 			return This.m_RangeLibrary.GetValue(id);
+		}
+		static public AudioClip GetSfx(int id)
+		{
+			return This.m_SfxLibrary.GetValue(id);
 		}
 
 	}
