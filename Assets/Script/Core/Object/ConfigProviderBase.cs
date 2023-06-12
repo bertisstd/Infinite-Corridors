@@ -15,6 +15,8 @@ namespace Bertis
 		protected Library<bool> m_BooleanLibrary;
 		[SerializeField]
 		protected Library<Range> m_RangeLibrary;
+		[SerializeField]
+		protected Library<AnimationCurve> m_CurveLibrary;
 
 	}
 }

@@ -40,6 +40,10 @@ namespace Bertis.Game
 		{
 			return This.m_RangeLibrary.GetValue(id);
 		}
+		static public AnimationCurve GetCurve(int id)
+		{
+			return This.m_CurveLibrary.GetValue(id);
+		}
 
 	}
 }

@@ -14,9 +14,13 @@ namespace Bertis.Game
 
 		static public event Action OnStageChanged;
 
+		static private AnimationCurve s_LevelSatelliteCountCurve;
+		static private AnimationCurve s_LevelMineCountCurve;
+
 		static private readonly SJitter<StageHandler> s_This = new(c_MenuName);
 		static private GComponentProvider<SatelliteInfo> s_EnemyProvider;
 		static private GComponentProvider<Gun> s_GunProvider;
+		static private GComponentProvider<Mine> s_MineProvider;
 
 		static private Stage s_CurrentStage;
 
@@ -28,6 +32,8 @@ namespace Bertis.Game
 		private Set<Stage> m_Stages;
 		[SerializeField]
 		private WeightedSet<SatelliteInfo> m_Spawns;
+		[SerializeField]
+		private Set<Mine> m_Mines;
 		[SerializeField]
 		private WeightedSet<Gun> m_Guns;
 
@@ -47,12 +53,20 @@ namespace Bertis.Game
 			private set => This.m_HighestLevel = value;
 		}
 
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		static private void Initialize()
 		{
+			s_LevelSatelliteCountCurve = ConfigProvider.GetCurve(+23588706);   /*LevelSatelliteCount*/
+			s_LevelMineCountCurve      = ConfigProvider.GetCurve(+1777853996); /*LevelMineCount*/
+
 			s_EnemyProvider = new();
 			s_GunProvider   = new();
+			s_MineProvider  = new();
+		}
 
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+		static private void Register()
+		{
 			PlayerInfo.Reference.OnDie += () =>
 			{
 				CurrentLevel = 0;
@@ -64,8 +78,9 @@ namespace Bertis.Game
 		{
 			if (s_CurrentStage != null)
 			{
-				s_CurrentStage.Dispose();
 				DisposeEnemies();
+				DisposeMines();
+				s_CurrentStage.Dispose();
 				s_CurrentStage = null;
 			}
 		}
@@ -92,11 +107,12 @@ namespace Bertis.Game
 
 		static public void LoadStage()
 		{
-			var nextStage = Instantiate(This.m_Stages.Gen());
-
 			UnloadStage();
+
+			var nextStage = Instantiate(This.m_Stages.Gen());
 			TeleportPlayer(nextStage);
 			SwapGuns();
+			SpawnMines(nextStage);
 			var count = SpawnEnemies(nextStage);
 
 			OnStageChanged?.Invoke();
@@ -107,6 +123,17 @@ namespace Bertis.Game
 		static private void DisposeEnemies()
 		{
 			foreach (var cache in s_EnemyProvider)
+			{
+				foreach (var elem in cache)
+				{
+					elem.gameObject.SetActive(false);
+				}
+			}
+		}
+
+		static private void DisposeMines()
+		{
+			foreach (var cache in s_MineProvider)
 			{
 				foreach (var elem in cache)
 				{
@@ -137,11 +164,13 @@ namespace Bertis.Game
 
 		static private int SpawnEnemies(Stage nextStage)
 		{
-			var points = nextStage.SpawnPoints
-				.OrderBy(_ => RNG.GenInt32(nextStage.MaxSpawnCount))
-				.Take(nextStage.MaxSpawnCount);
+			var count = (int)s_LevelSatelliteCountCurve.Evaluate(CurrentLevel);
 
-			var count = 0;
+			var points = nextStage.SpawnPoints
+				.OrderBy(_ => RNG.GenInt32(count))
+				.Take(count);
+
+			var ret = 0;
 			foreach (var point in points)
 			{
 				var scheme = This.m_Spawns.GenValue();
@@ -150,10 +179,28 @@ namespace Bertis.Game
 				instance.transform.position = point.position;
 				instance.gameObject.SetActive(true);
 
-				count++;
+				ret++;
 			}
 
-			return count;
+			return ret;
+		}
+
+		static private void SpawnMines(Stage nextStage)
+		{
+			var count = (int)s_LevelMineCountCurve.Evaluate(CurrentLevel);
+
+			var points = nextStage.MinePoints
+				.OrderBy(_ => RNG.GenInt32(count))
+				.Take(count);
+
+			foreach (var point in points)
+			{
+				var scheme = This.m_Mines.Gen();
+				var instance = s_MineProvider.Provide(scheme);
+				instance.ResetProperties();
+				instance.transform.position = point.position;
+				instance.gameObject.SetActive(true);
+			}
 		}
 
 	}

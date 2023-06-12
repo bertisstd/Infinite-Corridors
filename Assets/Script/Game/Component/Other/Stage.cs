@@ -13,7 +13,7 @@ namespace Bertis.Game
 		[SerializeField]
 		private Transform[] m_SpawnPoints;
 		[SerializeField]
-		private int m_MaxSpawnCount;
+		private Transform[] m_MinePoints;
 
 		private int m_SatelliteCount;
 
@@ -25,9 +25,9 @@ namespace Bertis.Game
 		{
 			get => m_SpawnPoints;
 		}
-		public int MaxSpawnCount
+		public Transform[] MinePoints
 		{
-			get => m_MaxSpawnCount;
+			get => m_MinePoints;
 		}
 
 		public void Activate(int satelliteCount)
@@ -48,6 +48,9 @@ namespace Bertis.Game
 
 		private void OnKill(UnitInfo unit)
 		{
+			if (unit is not SatelliteInfo)
+				return;
+
 			if (--m_SatelliteCount <= 0)
 			{
 				OpenDoors(true);
