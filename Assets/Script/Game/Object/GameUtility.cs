@@ -11,9 +11,17 @@ namespace Bertis.Game
 
 		static private readonly SJitter<GameUtility> s_This = new(c_MenuName);
 
+		[SerializeField]
+		private InputSource m_InputSource;
+
 		static private GameUtility This
 		{
 			get => s_This.Get();
+		}
+
+		static public InputSource GetInputSource()
+		{
+			return This.m_InputSource;
 		}
 
 		static public void Pause(bool forward)
@@ -24,6 +32,12 @@ namespace Bertis.Game
 		static public void Quit()
 		{
 			Application.Quit();
+		}
+
+		public enum InputSource
+		{
+			MouseKeyboard,
+			ScreenTouch
 		}
 
 	}

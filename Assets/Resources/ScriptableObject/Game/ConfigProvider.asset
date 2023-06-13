@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aee0190fb8d7074db954849f13c6b45, type: 3}
+  m_Name: ConfigProvider
+  m_EditorClassIdentifier: 
+  m_SchemeLibrary:
+    m_Collection:
+    - m_Name: HealthDrop
+      m_Id: -522818778
+      m_Value: {fileID: 3026342838667227540, guid: 88bec8fc16140fa48ac6f739e1955008, type: 3}
+    - m_Name: BlackoutHandler
+      m_Id: -1621176718
+      m_Value: {fileID: 3893378117658351005, guid: 6572af8cbb33c264dbd86066aed99a94, type: 3}
+  m_SingleLibrary:
+    m_Collection:
+    - m_Name: ViewFollowSpeed
+      m_Id: 1512779511
+      m_Value: 2
+    - m_Name: HealthDropChance
+      m_Id: -1235376000
+      m_Value: 0.3
+    - m_Name: HealthDropAmount
+      m_Id: 482862054
+      m_Value: 10
+  m_Int32Library:
+    m_Collection: []
+  m_BooleanLibrary:
+    m_Collection: []
+  m_RangeLibrary:
+    m_Collection:
+    - m_Name: StageLight
+      m_Id: 2054557613
+      m_Value:
+        start: 0.4
+        end: 0.8
+  m_CurveLibrary:
+    m_Collection:
+    - m_Name: LevelSatelliteCount
+      m_Id: 23588706
+      m_Value:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 10
+          inSlope: 0.2
+          outSlope: 0.2
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 30
+          inSlope: 0.2
+          outSlope: 0.2
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+    - m_Name: LevelMineCount
+      m_Id: 1777853996
+      m_Value:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 4
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 4
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0

@@ -7,10 +7,10 @@ namespace Bertis.Test
 	using Bertis.Game;
 	using System;
 	using UnityEngine.UI;
+	using Bertis.UI;
 
 	public class Tester : MonoBehaviour
 	{
-		
 
 	}
 }

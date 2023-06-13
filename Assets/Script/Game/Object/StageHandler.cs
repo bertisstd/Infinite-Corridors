@@ -1,11 +1,11 @@
+using System;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using Bertis.Runtime;
 
 namespace Bertis.Game
 {
-	using System;
-	using System.Linq;
-	using UnityEngine;
-	using Bertis.Runtime;
-
 	[CreateAssetMenu(fileName = c_FileName, menuName = c_MenuName)]
 	public sealed class StageHandler : ScriptableObject
 	{
@@ -16,6 +16,7 @@ namespace Bertis.Game
 
 		static private AnimationCurve s_LevelSatelliteCountCurve;
 		static private AnimationCurve s_LevelMineCountCurve;
+		static private Range s_StageLightRange;
 
 		static private readonly SJitter<StageHandler> s_This = new(c_MenuName);
 		static private GComponentProvider<SatelliteInfo> s_EnemyProvider;
@@ -23,6 +24,7 @@ namespace Bertis.Game
 		static private GComponentProvider<Mine> s_MineProvider;
 
 		static private Stage s_CurrentStage;
+		static private Light2D s_GlobalLight;
 
 		[SerializeField]
 		private int m_CurrentLevel;
@@ -58,10 +60,13 @@ namespace Bertis.Game
 		{
 			s_LevelSatelliteCountCurve = ConfigProvider.GetCurve(+23588706);   /*LevelSatelliteCount*/
 			s_LevelMineCountCurve      = ConfigProvider.GetCurve(+1777853996); /*LevelMineCount*/
+			s_StageLightRange          = ConfigProvider.GetRange(+2054557613); /*StageLight*/
 
 			s_EnemyProvider = new();
 			s_GunProvider   = new();
 			s_MineProvider  = new();
+
+			s_GlobalLight = FindObjectOfType<Light2D>();
 		}
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -117,6 +122,7 @@ namespace Bertis.Game
 
 			OnStageChanged?.Invoke();
 			nextStage.Activate(count);
+			s_GlobalLight.intensity = s_StageLightRange.Random;
 			s_CurrentStage = nextStage;
 		}
 

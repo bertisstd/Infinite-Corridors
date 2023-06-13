@@ -22,6 +22,7 @@ namespace Bertis.Runtime
 			if (worldSpriteRef.GetInfo(out var info))
 			{
 				var processor = s_Cache.Provide();
+				position.z = 0f;
 				processor.transform.position = position;
 				processor.Restart(info);
 			}

@@ -9,6 +9,7 @@ namespace Bertis.Game
 	{
 		static public event ReactionDelegate OnReactionStatic;
 		static public event Action<UnitInfo, float> OnHealStatic;
+		static public event Action<UnitInfo> OnDieStatic;
 
 		public event ReactionDelegate OnReaction;
 		public event Action<UnitInfo> OnKill;
@@ -111,7 +112,7 @@ namespace Bertis.Game
 				target.Health = health;
 			}
 
-			var type = UnitType;
+			var type = target.UnitType;
 
 			AudioClip sfx;
 			ParticleSystem pfx;
@@ -147,6 +148,7 @@ namespace Bertis.Game
 
 		public virtual void Die()
 		{
+			OnDieStatic?.Invoke(this);
 			OnDie?.Invoke();
 			gameObject.SetActive(false);
 		}

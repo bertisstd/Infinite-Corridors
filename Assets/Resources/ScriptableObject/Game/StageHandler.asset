@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e544cda3070940f4fa6f5d07284a7b74, type: 3}
+  m_Name: StageHandler
+  m_EditorClassIdentifier: 
+  m_CurrentLevel: 6
+  m_HighestLevel: 6
+  m_Stages:
+    m_Collection:
+    - {fileID: 6464632301609286410, guid: fdb8104b5c690fe478d1b44aaaa3f601, type: 3}
+    - {fileID: 469722843971519084, guid: 82fe1c080cce9ec419fa38f594df672c, type: 3}
+    - {fileID: 2528868192391486728, guid: 8d86a4b509e2bcd45a663c875f957856, type: 3}
+    - {fileID: 8523995604319469790, guid: 80b86090d08fe0c4c9f6151d6e6bd375, type: 3}
+    - {fileID: 3924940250245694732, guid: 9939fadcde0f8ac44b83513439583a5e, type: 3}
+    - {fileID: 1197750751737786835, guid: af62fafa1698e5740ab562b569cdd7f2, type: 3}
+    - {fileID: 4113682056795372359, guid: 51ec1f506d0f9ab47ab273c1fa45d2c0, type: 3}
+    - {fileID: 3108644127761813093, guid: 6b11f7d2877379a4c901a31bf35ce7e5, type: 3}
+    - {fileID: 5802461859133930365, guid: 48c3c64aaa1ae4f4fa394413f24510f6, type: 3}
+    - {fileID: 8556115434141773617, guid: d62841c5a3fca7f4b9427290d1553589, type: 3}
+    m_Mode: 0
+    m_LastIndex: 5
+  m_Spawns:
+    m_Collection:
+    - m_Name: Goblin Assasin
+      m_Value: {fileID: 1318109415229275208, guid: af895509d55957c408e68c9aa0e73106, type: 3}
+      m_Weight: 1
+      m_Chance: 4.7619047
+    - m_Name: Goblin Berserker
+      m_Value: {fileID: 3870839404699370787, guid: 7faeef749f3002c459cd6ff703de3c76, type: 3}
+      m_Weight: 2
+      m_Chance: 9.523809
+    - m_Name: Goblin Swordsman
+      m_Value: {fileID: 9218594197649109096, guid: 8bb08fce6afb7c64aa989515b78b9985, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    - m_Name: Spider
+      m_Value: {fileID: 1914634913208788191, guid: 07ccff9f48f10b14eac2f3bf89a7d8af, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    - m_Name: Wendigo
+      m_Value: {fileID: 2019641582513988373, guid: 49e329a3fc3dd7e4d952b0aa293e3f7b, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    - m_Name: Alien1
+      m_Value: {fileID: 1944474150028277906, guid: 7a9a2211651f4e04285df49a312f5fcb, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    - m_Name: Alien2
+      m_Value: {fileID: 9129098385325556514, guid: 0d3b3e32d50fa2d4a8ebeedebeaf7ca5, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    - m_Name: Alien3
+      m_Value: {fileID: 6700195047216316389, guid: 193d0f8d937a8c4499fd23ba316c5a22, type: 3}
+      m_Weight: 3
+      m_Chance: 14.285714
+    m_TotalWeight: 21
+  m_Mines:
+    m_Collection:
+    - {fileID: 5522614330692457898, guid: 06eefe4c8d2ce6a4ca5014e47951fa94, type: 3}
+    - {fileID: 8794855152028116143, guid: dc0deb313d99dd4478cfd90c6266afe9, type: 3}
+    - {fileID: 2432265333707426539, guid: 865b77209c2b6d34e8a91b9d37fe9b0b, type: 3}
+    m_Mode: 0
+    m_LastIndex: 1
+  m_Guns:
+    m_Collection:
+    - m_Name: Rifle1
+      m_Value: {fileID: 1586973054391813191, guid: ca5c8787ca005e34f842df6876a64a8c, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    - m_Name: Rifle2
+      m_Value: {fileID: 7340778118232485738, guid: cdee2d9e0bf0c6b4393ce423b76121b6, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    - m_Name: Rifle3
+      m_Value: {fileID: 2780730995833367301, guid: c230094ca071a624690b7211e88c140b, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    - m_Name: Rifle4
+      m_Value: {fileID: 6517827300324473074, guid: 04e012b6023bd66448b63476334c148a, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    - m_Name: Rifle5
+      m_Value: {fileID: 7977149737221520381, guid: 1d583b729fb29644597bc1463baeb032, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    - m_Name: Rifle6
+      m_Value: {fileID: 1585795226678535725, guid: 72ee5869c64460c448afcf5bb50d0134, type: 3}
+      m_Weight: 1
+      m_Chance: 16.666666
+    m_TotalWeight: 6

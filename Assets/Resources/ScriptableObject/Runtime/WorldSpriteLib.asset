@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca83f62fe3cf9a4aa00bb3fb520dbdb, type: 3}
+  m_Name: WorldSpriteLib
+  m_EditorClassIdentifier: 
+  m_Collection:
+  - m_Name: __null
+    m_Id: 0
+    m_SpriteSet:
+      m_Collection: []
+      m_Mode: 0
+      m_LastIndex: 0
+    m_RenderOrder: 0
+  - m_Name: BloodSplatter
+    m_Id: 3
+    m_SpriteSet:
+      m_Collection:
+      - {fileID: 21300000, guid: 7d88bc9f1d287084f9cd1219bb623841, type: 3}
+      m_Mode: 0
+      m_LastIndex: 0
+    m_RenderOrder: 4
+  - m_Name: Crater
+    m_Id: 4
+    m_SpriteSet:
+      m_Collection:
+      - {fileID: 21300000, guid: b4d5ca115cfe91e40b2be0a1ac200f85, type: 3}
+      m_Mode: 0
+      m_LastIndex: 0
+    m_RenderOrder: 0
+  m_NextId: 5

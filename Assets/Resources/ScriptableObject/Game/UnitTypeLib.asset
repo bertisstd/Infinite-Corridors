@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1beb5bc0f8b244eb2d98b6e76dfe2c, type: 3}
+  m_Name: UnitTypeLib
+  m_EditorClassIdentifier: 
+  m_Collection:
+  - m_Name: Human
+    m_Id: 1
+    m_Static: 0
+    m_HitSfx: {fileID: 0}
+    m_HitPfx: {fileID: 40177537772721873, guid: c4a0c9f8736047347843aa6b7a9de63d, type: 3}
+    m_DeathSfx: {fileID: 0}
+    m_DeathPfx: {fileID: 40177537772721873, guid: c4a0c9f8736047347843aa6b7a9de63d, type: 3}
+    m_DeathSprite:
+      m_Id: 3
+  - m_Name: Wall/Wood
+    m_Id: 2
+    m_Static: 1
+    m_HitSfx: {fileID: 0}
+    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSfx: {fileID: 0}
+    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSprite:
+      m_Id: 0
+  - m_Name: Wall/Stone
+    m_Id: 3
+    m_Static: 1
+    m_HitSfx: {fileID: 0}
+    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSfx: {fileID: 0}
+    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSprite:
+      m_Id: 0
+  - m_Name: Wall/Clay
+    m_Id: 4
+    m_Static: 1
+    m_HitSfx: {fileID: 0}
+    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSfx: {fileID: 0}
+    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSprite:
+      m_Id: 0
+  - m_Name: Mine
+    m_Id: 5
+    m_Static: 0
+    m_HitSfx: {fileID: 0}
+    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSfx: {fileID: 0}
+    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathSprite:
+      m_Id: 4
+  m_NextId: 6

@@ -34,19 +34,19 @@ namespace Bertis.Game
 		{
 			gameObject.SetActive(true);
 			m_SatelliteCount = satelliteCount;
-			PlayerInfo.Reference.OnKill += OnKill;
+			UnitInfo.OnDieStatic += OnUnitDie;
 			RaiseOnProgress();
 			OpenDoors(false);
 		}
 
 		public void Dispose()
 		{
-			PlayerInfo.Reference.OnKill -= OnKill;
+			UnitInfo.OnDieStatic -= OnUnitDie;
 			gameObject.SetActive(false);
 			Destroy(gameObject);
 		}
 
-		private void OnKill(UnitInfo unit)
+		private void OnUnitDie(UnitInfo unit)
 		{
 			if (unit is not SatelliteInfo)
 				return;

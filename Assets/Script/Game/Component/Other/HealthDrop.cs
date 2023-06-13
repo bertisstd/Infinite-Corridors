@@ -39,7 +39,7 @@ namespace Bertis.Game
 
 		static private void OnKill(UnitInfo unit)
 		{
-			if (RNG.GenBool(s_DropChance))
+			if (unit is SatelliteInfo && RNG.GenBool(s_DropChance))
 			{
 				Drop(unit.transform.position, s_DropAmount);
 			}
