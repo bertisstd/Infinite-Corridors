@@ -16,25 +16,25 @@ MonoBehaviour:
   - m_Name: Human
     m_Id: 1
     m_Static: 0
-    m_HitSfx: {fileID: 0}
+    m_HitSfx: {fileID: 8300000, guid: b9594f0f826d2a745937bcee4c5ce406, type: 3}
     m_HitPfx: {fileID: 40177537772721873, guid: c4a0c9f8736047347843aa6b7a9de63d, type: 3}
-    m_DeathSfx: {fileID: 0}
+    m_DeathSfx: {fileID: 8300000, guid: f97efa5df4bbd484a85a26fcb7fa3b58, type: 3}
     m_DeathPfx: {fileID: 40177537772721873, guid: c4a0c9f8736047347843aa6b7a9de63d, type: 3}
     m_DeathSprite:
       m_Id: 3
   - m_Name: Wall/Wood
     m_Id: 2
     m_Static: 1
-    m_HitSfx: {fileID: 0}
-    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_HitSfx: {fileID: 8300000, guid: ad7df950aa9ac5b4c85860b75105a347, type: 3}
+    m_HitPfx: {fileID: 200274477991135119, guid: 1f4e8cbd71b50374192bbccf2c398ffe, type: 3}
     m_DeathSfx: {fileID: 0}
-    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathPfx: {fileID: 0}
     m_DeathSprite:
       m_Id: 0
   - m_Name: Wall/Stone
     m_Id: 3
     m_Static: 1
-    m_HitSfx: {fileID: 0}
+    m_HitSfx: {fileID: 8300000, guid: 6b8aeaf4ba62ddc4fac242d24dad72a5, type: 3}
     m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
     m_DeathSfx: {fileID: 0}
     m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
@@ -53,9 +53,9 @@ MonoBehaviour:
     m_Id: 5
     m_Static: 0
     m_HitSfx: {fileID: 0}
-    m_HitPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_HitPfx: {fileID: 200274477991135119, guid: 1f4e8cbd71b50374192bbccf2c398ffe, type: 3}
     m_DeathSfx: {fileID: 0}
-    m_DeathPfx: {fileID: 6786953231516753047, guid: 8c1dd790eaec530489cf05e50c1b883e, type: 3}
+    m_DeathPfx: {fileID: 200274477991135119, guid: 1f4e8cbd71b50374192bbccf2c398ffe, type: 3}
     m_DeathSprite:
-      m_Id: 4
+      m_Id: 0
   m_NextId: 6

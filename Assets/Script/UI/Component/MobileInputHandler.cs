@@ -15,7 +15,7 @@ namespace Bertis.UI
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		static private void Initialize()
 		{
-			if (GameUtility.GetInputSource() == GameUtility.InputSource.ScreenTouch)
+			//if (GameUtility.GetInputSource() == GameUtility.InputSource.ScreenTouch)
 			{
 				var scheme = ConfigProvider.GetScheme<MobileInputHandler>(-1370831324); /*MobileInputHandler*/
 				var instance = Hierarchy.CreateComponent(scheme);

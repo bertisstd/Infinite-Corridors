@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977149736138294782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.484, y: 0.044, z: 0}
+  m_LocalPosition: {x: 1.917, y: 0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977149737221520380}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.5, y: -1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76,19 +76,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3d3a7894bf73b478becaec5724c313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 19
+  m_Damage: 35
   m_Muzzle: {fileID: 7977149736138294783}
-  m_FireInterval: 0.2
-  m_RoundLifetime: 1.1
-  m_RoundSpeed: 19
-  m_Pierce: 0
+  m_FireInterval: 0.4
+  m_RoundLifetime: 0.5
+  m_RoundSpeed: 30
+  m_Pierce: 1
   m_RoundScheme: {fileID: 4891526235966608815, guid: 6b0a154897def35498a9e8dd3c2e5e23, type: 3}
-  m_FireSfx: {fileID: 8300000, guid: d3145669525447043bfaa6d44d6a7201, type: 3}
+  m_FireSfx: {fileID: 8300000, guid: 5205409388412054aa7e7b399524d54f, type: 3}
   m_FireSpriteAnim:
     m_Id: 3
   m_FireNoise:
-    m_Id: 2
+    m_Id: 4
     m_Params:
       m_Enabled: 1
-      m_Amplitude: 0.2
-      m_Duration: 0.2
+      m_Amplitude: 0.3
+      m_Duration: 0.14

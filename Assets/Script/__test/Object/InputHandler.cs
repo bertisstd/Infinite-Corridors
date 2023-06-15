@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 
 namespace Bertis.Test
 {
@@ -40,3 +41,4 @@ namespace Bertis.Test
 
 	}
 }
+#endif

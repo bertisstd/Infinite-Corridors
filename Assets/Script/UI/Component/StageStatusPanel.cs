@@ -33,9 +33,9 @@ namespace Bertis.UI
 
 		private void OnStageProgress(int left)
 		{
-			m_LeftSatelliteCountLabel.text = left <= 0f
-				? "Cleared"
-				: $"{left} Left";
+			m_LeftSatelliteCountLabel.text = left > 0f
+				? $"{left} Left"
+				: "Cleared (Enter any door)";
 		}
 
 	}

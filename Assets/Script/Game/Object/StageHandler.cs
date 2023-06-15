@@ -37,7 +37,7 @@ namespace Bertis.Game
 		[SerializeField]
 		private Set<Mine> m_Mines;
 		[SerializeField]
-		private WeightedSet<Gun> m_Guns;
+		private Set<Gun> m_Guns;
 
 		static private StageHandler This
 		{
@@ -66,7 +66,8 @@ namespace Bertis.Game
 			s_GunProvider   = new();
 			s_MineProvider  = new();
 
-			s_GlobalLight = FindObjectOfType<Light2D>();
+			s_GlobalLight = FindObjectsOfType<Light2D>()
+				.First(light => light.lightType == Light2D.LightType.Global);
 		}
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -163,7 +164,7 @@ namespace Bertis.Game
 			if (prevGun != null)
 				prevGun.gameObject.SetActive(false);
 
-			var nextGun = s_GunProvider.Provide(This.m_Guns.GenValue());
+			var nextGun = s_GunProvider.Provide(This.m_Guns.Gen());
 			nextGun.gameObject.SetActive(true);
 			player.Gun = nextGun;
 		}

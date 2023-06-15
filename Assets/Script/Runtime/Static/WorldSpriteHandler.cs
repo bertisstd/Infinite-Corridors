@@ -28,6 +28,14 @@ namespace Bertis.Runtime
 			}
 		}
 
+		static public void ClearAll()
+		{
+			foreach (var elem in s_Cache)
+			{
+				elem.gameObject.SetActive(false);
+			}
+		}
+
 		private class Processor : MonoBehaviour
 		{
 			private SpriteRenderer m_SpriteRenderer;

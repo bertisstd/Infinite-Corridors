@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ab0b571923bb2428fba7179cb961fd, type: 3}
   m_Name: GameUtility
   m_EditorClassIdentifier: 
-  m_InputSource: 0
+  m_InputSource: 1
